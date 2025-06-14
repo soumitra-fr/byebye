@@ -1,4 +1,4 @@
-// Optimized CRM Application
+// Optimized CRM Application with Universal Card Component
 class CRMApp {
   constructor() {
     this.currentModule = 'modules';
@@ -6,6 +6,9 @@ class CRMApp {
     this.leads = this.generateData('leads');
     this.contacts = this.generateData('contacts');
     this.deals = this.generateData('deals');
+    this.reports = this.generateData('reports');
+    this.analytics = this.generateData('analytics');
+    this.requests = this.generateData('requests');
     this.init();
   }
 
@@ -14,6 +17,9 @@ class CRMApp {
     this.renderCards('leads-grid', this.leads, this.createLeadCard);
     this.renderCards('contacts-grid', this.contacts, this.createContactCard);
     this.renderDeals();
+    this.renderReports();
+    this.renderAnalytics();
+    this.renderRequests();
     this.setupDragAndDrop();
   }
 
@@ -110,7 +116,61 @@ class CRMApp {
     }
   }
 
-  // Generic data generation
+  // Universal Card Component
+  createGenericCard(config) {
+    const {
+      id = '',
+      type = 'generic',
+      classes = '',
+      dataAttributes = {},
+      header = {},
+      body = '',
+      actions = [],
+      draggable = false
+    } = config;
+
+    // Build data attributes string
+    const dataAttrs = Object.entries(dataAttributes)
+      .map(([key, value]) => `data-${key}="${value}"`)
+      .join(' ');
+
+    // Build header content
+    let headerContent = '';
+    if (header.title || header.subtitle || header.badge) {
+      headerContent = `
+        <div class="card-header">
+          <div>
+            ${header.title ? `<h3 class="card-title">${header.title}</h3>` : ''}
+            ${header.subtitle ? `<p class="card-subtitle">${header.subtitle}</p>` : ''}
+          </div>
+          ${header.badge ? `<span class="status-badge ${header.badge.class || ''}">${header.badge.text}</span>` : ''}
+          ${header.icon ? `<div class="card-icon">${header.icon}</div>` : ''}
+        </div>
+      `;
+    }
+
+    // Build actions content
+    let actionsContent = '';
+    if (actions.length > 0) {
+      const actionButtons = actions.map(action => 
+        `<button class="btn ${action.class || 'btn-secondary'}" ${action.onclick ? `onclick="${action.onclick}"` : ''}>${action.text}</button>`
+      ).join('');
+      actionsContent = `<div class="card-actions">${actionButtons}</div>`;
+    }
+
+    return `
+      <div class="card ${type}-card ${classes}" 
+           ${id ? `id="${id}"` : ''} 
+           ${dataAttrs} 
+           ${draggable ? 'draggable="true"' : ''}>
+        ${headerContent}
+        ${body ? `<div class="card-body">${body}</div>` : ''}
+        ${actionsContent}
+      </div>
+    `;
+  }
+
+  // Enhanced data generation with more types
   generateData(type) {
     const data = {
       leads: [
@@ -149,7 +209,24 @@ class CRMApp {
           { id: 10, title: 'Website Redesign', company: 'Local Business', value: '$15,000' },
           { id: 11, title: 'IT Consulting', company: 'Professional Services', value: '$28,000' }
         ]
-      }
+      },
+      reports: [
+        { id: 1, title: 'Lead Conversion Report', description: 'Track lead to customer conversion rates', type: 'conversion' },
+        { id: 2, title: 'Sales Performance', description: 'Monthly sales team performance metrics', type: 'performance' },
+        { id: 3, title: 'Revenue Analysis', description: 'Comprehensive revenue breakdown by quarter', type: 'revenue' },
+        { id: 4, title: 'Daily Dashboard', description: 'Key metrics and KPIs at a glance', type: 'dashboard' }
+      ],
+      analytics: [
+        { id: 1, title: 'Revenue Trend', value: '$847K', change: '+15%', type: 'positive' },
+        { id: 2, title: 'Lead Sources', value: '2,847', change: '+12%', type: 'positive' },
+        { id: 3, title: 'Conversion Rate', value: '23%', change: '-2%', type: 'negative' },
+        { id: 4, title: 'Avg Deal Size', value: '$12,450', change: '+8.3%', type: 'positive' }
+      ],
+      requests: [
+        { id: 1, title: 'Discount Approval', description: '15% discount for Enterprise deal', status: 'pending', date: '2 days ago' },
+        { id: 2, title: 'Price Override', description: 'Custom pricing for bulk order', status: 'approved', date: '1 week ago' },
+        { id: 3, title: 'Extended Trial', description: '30-day trial extension request', status: 'rejected', date: '3 days ago' }
+      ]
     };
     return data[type];
   }
@@ -158,64 +235,177 @@ class CRMApp {
   renderCards(containerId, data, cardCreator) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    container.innerHTML = data.map(item => cardCreator(item)).join('');
+    container.innerHTML = data.map(item => cardCreator.call(this, item)).join('');
   }
 
+  // Refactored card creators using universal component
   createLeadCard(lead) {
-    return `
-      <div class="lead-card card" data-lead-id="${lead.id}">
-        <div class="card-header">
-          <div>
-            <h3 class="card-title">${lead.name}</h3>
-            <p class="card-subtitle">${lead.company}</p>
-          </div>
-          <span class="status-badge ${lead.status}">${lead.status}</span>
-        </div>
+    return this.createGenericCard({
+      type: 'lead',
+      dataAttributes: { 'lead-id': lead.id },
+      header: {
+        title: lead.name,
+        subtitle: lead.company,
+        badge: { text: lead.status, class: lead.status }
+      },
+      body: `
         <div class="card-info">
           <p>📧 ${lead.email}</p>
           <p>📞 ${lead.phone}</p>
         </div>
-        <div class="card-actions">
-          <button class="btn btn-primary" onclick="app.editLead(${lead.id})">Edit</button>
-          <button class="btn btn-secondary" onclick="app.deleteLead(${lead.id})">Delete</button>
-        </div>
-      </div>
-    `;
+      `,
+      actions: [
+        { text: 'Edit', class: 'btn btn-primary', onclick: `app.editLead(${lead.id})` },
+        { text: 'Delete', class: 'btn btn-secondary', onclick: `app.deleteLead(${lead.id})` }
+      ]
+    });
   }
 
   createContactCard(contact) {
-    return `
-      <div class="contact-card card" data-contact-id="${contact.id}">
-        <div class="card-header">
-          <div>
-            <h3 class="card-title">${contact.name}</h3>
-            <p class="card-subtitle">${contact.company}</p>
-          </div>
-        </div>
+    return this.createGenericCard({
+      type: 'contact',
+      dataAttributes: { 'contact-id': contact.id },
+      header: {
+        title: contact.name,
+        subtitle: contact.company
+      },
+      body: `
         <div class="card-info">
           <p>📧 ${contact.email}</p>
           <p>📞 ${contact.phone}</p>
         </div>
-        <div class="card-actions">
-          <button class="btn btn-primary">Edit</button>
-          <button class="btn btn-secondary">Delete</button>
-        </div>
-      </div>
-    `;
+      `,
+      actions: [
+        { text: 'Edit', class: 'btn btn-primary' },
+        { text: 'Delete', class: 'btn btn-secondary' }
+      ]
+    });
   }
 
+  createDealCard(deal, stage) {
+    return this.createGenericCard({
+      type: 'deal',
+      classes: 'deal-card',
+      dataAttributes: { 'deal-id': deal.id, 'stage': stage },
+      draggable: true,
+      body: `
+        <h4 class="deal-title">${deal.title}</h4>
+        <p class="deal-company">${deal.company}</p>
+        <p class="deal-value">${deal.value}</p>
+      `
+    });
+  }
+
+  createReportCard(report) {
+    return this.createGenericCard({
+      type: 'report',
+      dataAttributes: { 'report-id': report.id },
+      header: {
+        title: report.title
+      },
+      body: `
+        <div class="card-info">
+          <p>${report.description}</p>
+        </div>
+      `,
+      actions: [
+        { text: 'View', class: 'btn btn-secondary' },
+        { text: 'Edit', class: 'btn btn-secondary' }
+      ]
+    });
+  }
+
+  createAnalyticsCard(analytics) {
+    const changeClass = analytics.type === 'positive' ? 'positive' : 'negative';
+    return this.createGenericCard({
+      type: 'analytics',
+      classes: 'stat-card',
+      dataAttributes: { 'analytics-id': analytics.id },
+      header: {
+        title: analytics.title,
+        icon: `
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+        `
+      },
+      body: `
+        <div class="stat-content">
+          <p class="stat-number">${analytics.value}</p>
+          <span class="stat-change ${changeClass}">${analytics.change} from last month</span>
+        </div>
+      `
+    });
+  }
+
+  createRequestCard(request) {
+    return this.createGenericCard({
+      type: 'request',
+      dataAttributes: { 'request-id': request.id },
+      header: {
+        title: request.title,
+        badge: { text: request.status, class: request.status }
+      },
+      body: `
+        <div class="card-info">
+          <p>${request.description}</p>
+          <span class="request-date">${request.date}</span>
+        </div>
+      `,
+      actions: request.status === 'pending' ? [
+        { text: 'Approve', class: 'btn btn-success' },
+        { text: 'Reject', class: 'btn btn-danger' }
+      ] : []
+    });
+  }
+
+  // Enhanced render methods
   renderDeals() {
     Object.keys(this.deals).forEach(stage => {
       const container = document.getElementById(`${stage}-deals`);
       if (!container) return;
 
-      container.innerHTML = this.deals[stage].map(deal => `
-        <div class="deal-card" data-deal-id="${deal.id}" data-stage="${stage}" draggable="true">
-          <h4 class="deal-title">${deal.title}</h4>
-          <p class="deal-company">${deal.company}</p>
-          <p class="deal-value">${deal.value}</p>
-        </div>
-      `).join('');
+      container.innerHTML = this.deals[stage].map(deal => 
+        this.createDealCard(deal, stage)
+      ).join('');
+    });
+  }
+
+  renderReports() {
+    // Render reports in their respective sections
+    const sections = ['my-reports', 'all-reports', 'favourites', 'shared-reports'];
+    sections.forEach((section, index) => {
+      const container = document.querySelector(`#${section} .reports-grid`);
+      if (container) {
+        const sectionReports = this.reports.slice(index, index + 2); // Distribute reports
+        container.innerHTML = sectionReports.map(report => 
+          this.createReportCard(report)
+        ).join('');
+      }
+    });
+  }
+
+  renderAnalytics() {
+    const container = document.querySelector('#dashboard .analytics-grid');
+    if (container) {
+      container.innerHTML = this.analytics.map(analytics => 
+        this.createAnalyticsCard(analytics)
+      ).join('');
+    }
+  }
+
+  renderRequests() {
+    const sections = ['pending', 'approved', 'rejected'];
+    sections.forEach(section => {
+      const container = document.querySelector(`#${section} .requests-list`);
+      if (container) {
+        const sectionRequests = this.requests.filter(req => req.status === section);
+        container.innerHTML = sectionRequests.map(request => 
+          this.createRequestCard(request)
+        ).join('');
+      }
     });
   }
 

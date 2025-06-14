@@ -93,19 +93,153 @@ body {
 .btn-success { background: var(--secondary-green); color: white; }
 .btn-danger { background: var(--alert-red); color: white; }
 
+/* Universal Card Component */
 .card {
   background: var(--bg-ivory);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   transition: var(--transition);
+  position: relative;
 }
-.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+.card:hover { 
+  transform: translateY(-2px); 
+  box-shadow: var(--shadow-lg); 
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-primary);
+}
+
+.card-subtitle {
+  color: var(--disabled-state);
+  font-size: var(--font-size-sm);
+}
+
+.card-body {
+  margin-bottom: var(--spacing-md);
+}
+
+.card-info {
+  margin-bottom: var(--spacing-md);
+}
+
+.card-info p {
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.card-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: auto;
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Specific Card Types */
+.lead-card, .contact-card {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.deal-card {
+  cursor: grab;
+  margin-bottom: var(--spacing-sm);
+  min-height: 120px;
+}
+
+.deal-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.deal-card.dragging {
+  cursor: grabbing;
+  opacity: 0.7;
+  transform: rotate(5deg);
+}
+
+.deal-title {
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-base);
+}
+
+.deal-company {
+  font-size: var(--font-size-sm);
+  color: var(--disabled-state);
+  margin-bottom: var(--spacing-sm);
+}
+
+.deal-value {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--primary-green);
+}
+
+.report-card {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.analytics-card.stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-height: 120px;
+}
+
+.request-card {
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.request-date {
+  font-size: var(--font-size-sm);
+  color: var(--disabled-state);
+  margin-top: var(--spacing-xs);
+}
 
 .grid {
   display: grid;
   gap: var(--spacing-lg);
 }
+
+/* Status Badges */
+.status-badge {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: white;
+}
+
+.status-badge.new { background: var(--info-blue); }
+.status-badge.contacted { background: var(--cta-orange); }
+.status-badge.qualified, .status-badge.approved { background: var(--secondary-green); }
+.status-badge.unqualified, .status-badge.rejected { background: var(--alert-red); }
+.status-badge.pending { background: var(--cta-orange); }
 
 /* Navigation */
 .main-nav {
@@ -364,42 +498,6 @@ body {
 /* Cards and Grids */
 .leads-grid, .contacts-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-md);
-}
-
-.card-title {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  margin-bottom: var(--spacing-xs);
-}
-
-.card-subtitle {
-  color: var(--disabled-state);
-  font-size: var(--font-size-sm);
-}
-
-.status-badge {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  text-transform: uppercase;
-  color: white;
-}
-
-.status-badge.new { background: var(--info-blue); }
-.status-badge.contacted { background: var(--cta-orange); }
-.status-badge.qualified, .status-badge.approved { background: var(--secondary-green); }
-.status-badge.unqualified, .status-badge.rejected { background: var(--alert-red); }
-
-.card-info { margin-bottom: var(--spacing-md); }
-.card-info p { margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); }
-.card-actions { display: flex; gap: var(--spacing-sm); }
-
 /* Pipeline */
 .pipeline-container {
   display: flex;
@@ -434,23 +532,6 @@ body {
 }
 
 .deals-list { min-height: 400px; }
-
-.deal-card {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
-  cursor: grab;
-  transition: var(--transition);
-}
-
-.deal-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
-.deal-card.dragging { cursor: grabbing; opacity: 0.7; transform: rotate(5deg); }
-
-.deal-title { font-weight: 600; margin-bottom: var(--spacing-xs); }
-.deal-company { font-size: var(--font-size-sm); color: var(--disabled-state); margin-bottom: var(--spacing-sm); }
-.deal-value { font-size: var(--font-size-lg); font-weight: 600; color: var(--primary-green); }
 
 /* Modal */
 .modal {
