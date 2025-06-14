@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoho CRM - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <svg class="brand-logo" viewBox="0 0 40 40">
+                <circle cx="20" cy="20" r="18" fill="#00A86B"/>
+                <path d="M12 20l6 6 12-12" stroke="white" stroke-width="2" fill="none"/>
+            </svg>
+            <span>Zoho CRM</span>
+        </div>
+        <ul class="nav-menu">
+            <li><button class="nav-btn active" data-module="modules">Modules</button></li>
+            <li><button class="nav-btn" data-module="reports">Reports</button></li>
+            <li><button class="nav-btn" data-module="analytics">Analytics</button></li>
+            <li><button class="nav-btn" data-module="requests">My Requests</button></li>
+            <li><button class="nav-btn" data-module="marketplace">Marketplace</button></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="profile-btn" data-module="profile">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" fill="currentColor"/>
+                    <path d="M4 20c0-4 4-8 8-8s8 4 8 8" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-content">
+                <!-- Module Sidebar -->
+                <div class="sidebar-section" data-section="modules">
+                    <ul class="sidebar-menu">
+                        <li><button class="sidebar-item active" data-view="home">Home</button></li>
+                        <li><button class="sidebar-item" data-view="leads">Leads</button></li>
+                        <li><button class="sidebar-item" data-view="contacts">Contacts</button></li>
+                        <li><button class="sidebar-item" data-view="accounts">Accounts</button></li>
+                        <li><button class="sidebar-item" data-view="deals">Deals</button></li>
+                        <li><button class="sidebar-item" data-view="tasks">Tasks</button></li>
+                        <li><button class="sidebar-item" data-view="meetings">Meetings</button></li>
+                        <li><button class="sidebar-item" data-view="calls">Calls</button></li>
+                        <li><button class="sidebar-item" data-view="products">Products</button></li>
+                    </ul>
+                </div>
+
+                <!-- Reports Sidebar -->
+                <div class="sidebar-section hidden" data-section="reports">
+                    <ul class="sidebar-menu">
+                        <li><button class="sidebar-item" data-scroll="my-reports">My Reports</button></li>
+                        <li><button class="sidebar-item" data-scroll="all-reports">All Reports</button></li>
+                        <li><button class="sidebar-item" data-scroll="favourites">Favourites</button></li>
+                        <li><button class="sidebar-item" data-scroll="shared-reports">Shared Reports</button></li>
+                    </ul>
+                </div>
+
+                <!-- Analytics Sidebar -->
+                <div class="sidebar-section hidden" data-section="analytics">
+                    <ul class="sidebar-menu">
+                        <li><button class="sidebar-item" data-scroll="dashboard">Analytical Dashboard</button></li>
+                        <li><button class="sidebar-item" data-scroll="sales-insight">Sales Insight</button></li>
+                        <li><button class="sidebar-item" data-scroll="performance">Performance Analytics</button></li>
+                        <li><button class="sidebar-item" data-scroll="forecasting">Forecasting</button></li>
+                    </ul>
+                </div>
+
+                <!-- Requests Sidebar -->
+                <div class="sidebar-section hidden" data-section="requests">
+                    <ul class="sidebar-menu">
+                        <li><button class="sidebar-item" data-scroll="pending">Pending Requests</button></li>
+                        <li><button class="sidebar-item" data-scroll="approved">Approved Requests</button></li>
+                        <li><button class="sidebar-item" data-scroll="rejected">Rejected Requests</button></li>
+                        <li><button class="sidebar-item" data-scroll="all-requests">All Requests</button></li>
+                    </ul>
+                </div>
+
+                <!-- Marketplace Sidebar -->
+                <div class="sidebar-section hidden" data-section="marketplace">
+                    <ul class="sidebar-menu">
+                        <li><button class="sidebar-item" data-scroll="extensions">Extensions</button></li>
+                        <li><button class="sidebar-item" data-scroll="integrations">Integrations</button></li>
+                        <li><button class="sidebar-item" data-scroll="templates">Templates</button></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <section class="content" id="content">
+            <!-- Home View -->
+            <div class="view active" data-view="home">
+                <div class="page-header">
+                    <h1>Dashboard Overview</h1>
+                    <button class="cta-btn">Add New Lead</button>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="m22 21-3-3m-2.5 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Leads</h3>
+                            <p class="stat-number">2,847</p>
+                            <span class="stat-change positive">+12% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <polyline points="12,6 12,12 16,14" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Active Deals</h3>
+                            <p class="stat-number">156</p>
+                            <span class="stat-change positive">+8% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24">
+                                <line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                                <path d="m17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Revenue</h3>
+                            <p class="stat-number">$847K</p>
+                            <span class="stat-change positive">+15% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Conversion</h3>
+                            <p class="stat-number">23%</p>
+                            <span class="stat-change negative">-2% from last month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>New lead added:</strong> Sarah Johnson from Tech Corp</p>
+                                <span class="activity-time">2 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <polyline points="12,6 12,12 16,14" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Deal updated:</strong> Enterprise Software License moved to negotiation</p>
+                                <span class="activity-time">15 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Meeting scheduled:</strong> Product demo with ABC Industries</p>
+                                <span class="activity-time">1 hour ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leads View -->
+            <div class="view" data-view="leads">
+                <div class="page-header">
+                    <h1>Leads Management</h1>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search leads..." id="leads-search">
+                            <svg class="search-icon" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <select class="filter-select" id="leads-filter">
+                            <option value="all">All Leads</option>
+                            <option value="new">New</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="qualified">Qualified</option>
+                            <option value="unqualified">Unqualified</option>
+                        </select>
+                        <button class="cta-btn" onclick="showLeadForm()">Add Lead</button>
+                    </div>
+                </div>
+
+                <div class="leads-grid" id="leads-grid">
+                    <!-- Leads will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Contacts View -->
+            <div class="view" data-view="contacts">
+                <div class="page-header">
+                    <h1>Contacts</h1>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search contacts..." id="contacts-search">
+                            <svg class="search-icon" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <button class="cta-btn">Add Contact</button>
+                    </div>
+                </div>
+
+                <div class="contacts-grid" id="contacts-grid">
+                    <!-- Contacts will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Deals View -->
+            <div class="view" data-view="deals">
+                <div class="page-header">
+                    <h1>Deal Pipeline</h1>
+                    <div class="header-actions">
+                        <button class="cta-btn">Add Deal</button>
+                    </div>
+                </div>
+
+                <div class="pipeline-container">
+                    <div class="pipeline-stage" data-stage="prospect">
+                        <div class="stage-header">
+                            <h3>Prospect</h3>
+                            <span class="stage-count">8</span>
+                        </div>
+                        <div class="deals-list" id="prospect-deals">
+                            <!-- Deals will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="pipeline-stage" data-stage="qualified">
+                        <div class="stage-header">
+                            <h3>Qualified</h3>
+                            <span class="stage-count">12</span>
+                        </div>
+                        <div class="deals-list" id="qualified-deals">
+                            <!-- Deals will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="pipeline-stage" data-stage="proposal">
+                        <div class="stage-header">
+                            <h3>Proposal</h3>
+                            <span class="stage-count">6</span>
+                        </div>
+                        <div class="deals-list" id="proposal-deals">
+                            <!-- Deals will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="pipeline-stage" data-stage="negotiation">
+                        <div class="stage-header">
+                            <h3>Negotiation</h3>
+                            <span class="stage-count">4</span>
+                        </div>
+                        <div class="deals-list" id="negotiation-deals">
+                            <!-- Deals will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="pipeline-stage" data-stage="closed">
+                        <div class="stage-header">
+                            <h3>Closed Won</h3>
+                            <span class="stage-count">18</span>
+                        </div>
+                        <div class="deals-list" id="closed-deals">
+                            <!-- Deals will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Views (simplified) -->
+            <div class="view" data-view="accounts">
+                <div class="page-header">
+                    <h1>Accounts</h1>
+                    <button class="cta-btn">Add Account</button>
+                </div>
+                <div class="content-placeholder">
+                    <p>Accounts management interface would be implemented here.</p>
+                </div>
+            </div>
+
+            <div class="view" data-view="tasks">
+                <div class="page-header">
+                    <h1>Tasks</h1>
+                    <button class="cta-btn">Add Task</button>
+                </div>
+                <div class="content-placeholder">
+                    <p>Task management interface would be implemented here.</p>
+                </div>
+            </div>
+
+            <div class="view" data-view="meetings">
+                <div class="page-header">
+                    <h1>Meetings</h1>
+                    <button class="cta-btn">Schedule Meeting</button>
+                </div>
+                <div class="content-placeholder">
+                    <p>Meeting management interface would be implemented here.</p>
+                </div>
+            </div>
+
+            <div class="view" data-view="calls">
+                <div class="page-header">
+                    <h1>Calls</h1>
+                    <button class="cta-btn">Log Call</button>
+                </div>
+                <div class="content-placeholder">
+                    <p>Call management interface would be implemented here.</p>
+                </div>
+            </div>
+
+            <div class="view" data-view="products">
+                <div class="page-header">
+                    <h1>Products</h1>
+                    <button class="cta-btn">Add Product</button>
+                </div>
+                <div class="content-placeholder">
+                    <p>Product management interface would be implemented here.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scrollable Sections for Reports, Analytics, etc. -->
+        <section class="scrollable-content hidden" id="reports-content">
+            <div class="section" id="my-reports">
+                <h2>My Reports</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Lead Conversion Report</h3>
+                        <p>Track lead to customer conversion rates</p>
+                        <div class="report-actions">
+                            <button class="btn-secondary">View</button>
+                            <button class="btn-secondary">Edit</button>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Sales Performance</h3>
+                        <p>Monthly sales team performance metrics</p>
+                        <div class="report-actions">
+                            <button class="btn-secondary">View</button>
+                            <button class="btn-secondary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="all-reports">
+                <h2>All Reports</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Revenue Analysis</h3>
+                        <p>Comprehensive revenue breakdown by quarter</p>
+                        <div class="report-actions">
+                            <button class="btn-secondary">View</button>
+                            <button class="btn-secondary">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="favourites">
+                <h2>Favourite Reports</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Daily Dashboard</h3>
+                        <p>Key metrics and KPIs at a glance</p>
+                        <div class="report-actions">
+                            <button class="btn-secondary">View</button>
+                            <button class="btn-secondary">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="shared-reports">
+                <h2>Shared Reports</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Team Performance</h3>
+                        <p>Shared team metrics and goals</p>
+                        <div class="report-actions">
+                            <button class="btn-secondary">View</button>
+                            <button class="btn-secondary">Share</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="scrollable-content hidden" id="analytics-content">
+            <div class="section" id="dashboard">
+                <h2>Analytical Dashboard</h2>
+                <div class="analytics-grid">
+                    <div class="chart-card">
+                        <h3>Revenue Trend</h3>
+                        <div class="chart-placeholder">
+                            <p>Revenue trend chart would be displayed here</p>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Lead Sources</h3>
+                        <div class="chart-placeholder">
+                            <p>Lead sources pie chart would be displayed here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="sales-insight">
+                <h2>Sales Insight</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Top Performers</h3>
+                        <div class="performers-list">
+                            <div class="performer">
+                                <span class="name">John Smith</span>
+                                <span class="value">$125K</span>
+                            </div>
+                            <div class="performer">
+                                <span class="name">Sarah Johnson</span>
+                                <span class="value">$98K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="performance">
+                <h2>Performance Analytics</h2>
+                <div class="performance-metrics">
+                    <div class="metric-card">
+                        <h3>Conversion Rate</h3>
+                        <p class="metric-value">23.5%</p>
+                        <span class="metric-change positive">+2.1%</span>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Avg Deal Size</h3>
+                        <p class="metric-value">$12,450</p>
+                        <span class="metric-change positive">+8.3%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="forecasting">
+                <h2>Forecasting</h2>
+                <div class="forecast-grid">
+                    <div class="forecast-card">
+                        <h3>Q4 Revenue Forecast</h3>
+                        <p class="forecast-value">$2.8M</p>
+                        <p class="forecast-confidence">85% confidence</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="scrollable-content hidden" id="requests-content">
+            <div class="section" id="pending">
+                <h2>Pending Requests</h2>
+                <div class="requests-list">
+                    <div class="request-item">
+                        <div class="request-info">
+                            <h3>Discount Approval</h3>
+                            <p>15% discount for Enterprise deal</p>
+                            <span class="request-date">2 days ago</span>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn-success">Approve</button>
+                            <button class="btn-danger">Reject</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="approved">
+                <h2>Approved Requests</h2>
+                <div class="requests-list">
+                    <div class="request-item">
+                        <div class="request-info">
+                            <h3>Price Override</h3>
+                            <p>Custom pricing for bulk order</p>
+                            <span class="request-date">1 week ago</span>
+                        </div>
+                        <span class="status-badge approved">Approved</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="rejected">
+                <h2>Rejected Requests</h2>
+                <div class="requests-list">
+                    <div class="request-item">
+                        <div class="request-info">
+                            <h3>Extended Trial</h3>
+                            <p>30-day trial extension request</p>
+                            <span class="request-date">3 days ago</span>
+                        </div>
+                        <span class="status-badge rejected">Rejected</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="all-requests">
+                <h2>All Requests</h2>
+                <div class="requests-list">
+                    <!-- All requests would be shown here -->
+                </div>
+            </div>
+        </section>
+
+        <section class="scrollable-content hidden" id="marketplace-content">
+            <div class="section" id="extensions">
+                <h2>Extensions</h2>
+                <div class="marketplace-grid">
+                    <div class="marketplace-item">
+                        <h3>Email Marketing Integration</h3>
+                        <p>Connect with popular email marketing platforms</p>
+                        <button class="btn-primary">Install</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="integrations">
+                <h2>Integrations</h2>
+                <div class="marketplace-grid">
+                    <div class="marketplace-item">
+                        <h3>Google Calendar Sync</h3>
+                        <p>Sync meetings and events with Google Calendar</p>
+                        <button class="btn-primary">Connect</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="templates">
+                <h2>Templates</h2>
+                <div class="marketplace-grid">
+                    <div class="marketplace-item">
+                        <h3>Sales Email Templates</h3>
+                        <p>Pre-built email templates for sales outreach</p>
+                        <button class="btn-primary">Use Template</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="view hidden" data-view="profile">
+            <div class="page-header">
+                <h1>Profile Settings</h1>
+            </div>
+            <div class="profile-content">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="48" fill="#00A86B"/>
+                            <circle cx="50" cy="35" r="15" fill="white"/>
+                            <path d="M20 80 C20 65, 35 55, 50 55 S80 65, 80 80" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="profile-info">
+                        <h2>John Doe</h2>
+                        <p>Sales Manager</p>
+                        <p>john.doe@company.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lead Form Modal -->
+    <div class="modal hidden" id="lead-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Lead</h2>
+                <button class="modal-close" onclick="hideLeadForm()">&times;</button>
+            </div>
+            <form class="lead-form" id="lead-form">
+                <div class="form-group">
+                    <label for="lead-name">Full Name *</label>
+                    <input type="text" id="lead-name" name="name" required>
+                    <div class="error-message" id="name-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lead-email">Email *</label>
+                    <input type="email" id="lead-email" name="email" required>
+                    <div class="error-message" id="email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lead-company">Company</label>
+                    <input type="text" id="lead-company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="lead-phone">Phone</label>
+                    <input type="tel" id="lead-phone" name="phone">
+                    <div class="error-message" id="phone-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lead-status">Status</label>
+                    <select id="lead-status" name="status">
+                        <option value="new">New</option>
+                        <option value="contacted">Contacted</option>
+                        <option value="qualified">Qualified</option>
+                        <option value="unqualified">Unqualified</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="hideLeadForm()">Cancel</button>
+                    <button type="submit" class="cta-btn">Add Lead</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header" onclick="toggleChat()">
+            <svg class="chat-icon" viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+            <span>Help</span>
+        </div>
+        <div class="chatbot-content hidden" id="chat-content">
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-message bot">
+                    <p>Hi! I'm here to help you navigate the CRM. What can I assist you with?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message..." id="chat-input">
+                <button onclick="sendMessage()">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" stroke-width="2"/>
+                        <polygon points="22,2 15,22 11,13 2,9 22,2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
