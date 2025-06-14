@@ -22,6 +22,7 @@
             <li><button class="nav-btn" data-module="analytics">Analytics</button></li>
             <li><button class="nav-btn" data-module="requests">My Requests</button></li>
             <li><button class="nav-btn" data-module="marketplace">Marketplace</button></li>
+            <li><button class="nav-btn" data-module="relationship-intelligence">🔮 Relationship Intelligence</button></li>
         </ul>
         <div class="nav-actions">
             <button class="profile-btn" data-module="profile">
@@ -89,6 +90,17 @@
                         <li><button class="sidebar-item" data-scroll="extensions">Extensions</button></li>
                         <li><button class="sidebar-item" data-scroll="integrations">Integrations</button></li>
                         <li><button class="sidebar-item" data-scroll="templates">Templates</button></li>
+                    </ul>
+                </div>
+
+                <!-- Relationship Intelligence Sidebar -->
+                <div class="sidebar-section hidden" data-section="relationship-intelligence">
+                    <ul class="sidebar-menu">
+                        <li><button class="sidebar-item" data-scroll="relationship-overview">Relationship Overview</button></li>
+                        <li><button class="sidebar-item" data-scroll="health-insights">Health Insights</button></li>
+                        <li><button class="sidebar-item" data-scroll="sentiment-analysis">Sentiment Analysis</button></li>
+                        <li><button class="sidebar-item" data-scroll="communication-patterns">Communication Patterns</button></li>
+                        <li><button class="sidebar-item" data-scroll="risk-alerts">Risk Alerts</button></li>
                     </ul>
                 </div>
             </div>
@@ -589,6 +601,204 @@
             </div>
         </section>
 
+        <!-- Relationship Intelligence Content -->
+        <section class="scrollable-content hidden" id="relationship-intelligence-content">
+            <div class="section" id="relationship-overview">
+                <h2>🔮 Relationship Intelligence Overview</h2>
+                <div class="ri-summary-grid">
+                    <div class="ri-summary-card">
+                        <div class="ri-icon healthy">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="ri-content">
+                            <h3>Healthy Relationships</h3>
+                            <p class="ri-number">127</p>
+                            <span class="ri-change positive">+8% this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ri-summary-card">
+                        <div class="ri-icon warning">
+                            <svg viewBox="0 0 24 24">
+                                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" fill="currentColor"/>
+                                <path d="M12 9v4" stroke="white" stroke-width="2"/>
+                                <path d="m12 17.02.01 0" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="ri-content">
+                            <h3>At Risk</h3>
+                            <p class="ri-number">23</p>
+                            <span class="ri-change negative">+3 this week</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ri-summary-card">
+                        <div class="ri-icon critical">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="currentColor"/>
+                                <path d="m15 9-6 6" stroke="white" stroke-width="2"/>
+                                <path d="m9 9 6 6" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="ri-content">
+                            <h3>Critical</h3>
+                            <p class="ri-number">7</p>
+                            <span class="ri-change critical">Needs attention</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ri-customer-grid" id="ri-customer-grid">
+                    <!-- Customer relationship cards will be populated here -->
+                </div>
+            </div>
+
+            <div class="section" id="health-insights">
+                <h2>Relationship Health Insights</h2>
+                <div class="health-insights-grid">
+                    <div class="insight-card">
+                        <h3>Communication Frequency</h3>
+                        <div class="insight-chart">
+                            <div class="chart-bar">
+                                <div class="bar-fill" style="width: 85%"></div>
+                                <span class="bar-label">Weekly Average: 8.5 interactions</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <h3>Response Time Analysis</h3>
+                        <div class="insight-chart">
+                            <div class="chart-bar">
+                                <div class="bar-fill warning" style="width: 65%"></div>
+                                <span class="bar-label">Average: 4.2 hours (Target: 2 hours)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <h3>Engagement Score</h3>
+                        <div class="insight-chart">
+                            <div class="chart-bar">
+                                <div class="bar-fill" style="width: 78%"></div>
+                                <span class="bar-label">Overall Score: 78/100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="sentiment-analysis">
+                <h2>Sentiment Analysis</h2>
+                <div class="sentiment-grid">
+                    <div class="sentiment-card positive">
+                        <div class="sentiment-icon">😊</div>
+                        <h3>Positive Sentiment</h3>
+                        <p class="sentiment-percentage">68%</p>
+                        <p class="sentiment-description">Customers expressing satisfaction and enthusiasm</p>
+                    </div>
+                    
+                    <div class="sentiment-card neutral">
+                        <div class="sentiment-icon">😐</div>
+                        <h3>Neutral Sentiment</h3>
+                        <p class="sentiment-percentage">24%</p>
+                        <p class="sentiment-description">Professional, factual communications</p>
+                    </div>
+                    
+                    <div class="sentiment-card negative">
+                        <div class="sentiment-icon">😟</div>
+                        <h3>Negative Sentiment</h3>
+                        <p class="sentiment-percentage">8%</p>
+                        <p class="sentiment-description">Concerns, complaints, or frustration detected</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="communication-patterns">
+                <h2>Communication Patterns</h2>
+                <div class="patterns-grid">
+                    <div class="pattern-card">
+                        <h3>Peak Communication Hours</h3>
+                        <div class="time-chart">
+                            <div class="time-slot">
+                                <span class="time">9-11 AM</span>
+                                <div class="activity-bar" style="width: 90%"></div>
+                            </div>
+                            <div class="time-slot">
+                                <span class="time">2-4 PM</span>
+                                <div class="activity-bar" style="width: 75%"></div>
+                            </div>
+                            <div class="time-slot">
+                                <span class="time">4-6 PM</span>
+                                <div class="activity-bar" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pattern-card">
+                        <h3>Preferred Communication Channels</h3>
+                        <div class="channel-list">
+                            <div class="channel-item">
+                                <span class="channel-name">Email</span>
+                                <span class="channel-percentage">45%</span>
+                            </div>
+                            <div class="channel-item">
+                                <span class="channel-name">Phone</span>
+                                <span class="channel-percentage">30%</span>
+                            </div>
+                            <div class="channel-item">
+                                <span class="channel-name">Video Call</span>
+                                <span class="channel-percentage">25%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="risk-alerts">
+                <h2>Risk Alerts & Recommendations</h2>
+                <div class="alerts-list">
+                    <div class="alert-item critical">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <h3>Critical: ABC Industries</h3>
+                            <p>No communication in 14 days. Last interaction showed frustration with delivery delays.</p>
+                            <div class="alert-actions">
+                                <button class="btn btn-primary">Schedule Call</button>
+                                <button class="btn btn-secondary">Send Follow-up</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-item warning">
+                        <div class="alert-icon">⚡</div>
+                        <div class="alert-content">
+                            <h3>Warning: Tech Startup Inc</h3>
+                            <p>Response time increased by 200%. Recent emails show neutral to negative sentiment shift.</p>
+                            <div class="alert-actions">
+                                <button class="btn btn-primary">Review History</button>
+                                <button class="btn btn-secondary">Set Reminder</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-item opportunity">
+                        <div class="alert-icon">🚀</div>
+                        <div class="alert-content">
+                            <h3>Opportunity: Global Solutions</h3>
+                            <p>High engagement score and positive sentiment. Perfect time for upselling or expansion discussion.</p>
+                            <div class="alert-actions">
+                                <button class="btn btn-primary">Create Proposal</button>
+                                <button class="btn btn-secondary">Schedule Meeting</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="view hidden" data-view="profile">
             <div class="page-header">
                 <h1>Profile Settings</h1>
@@ -683,3 +893,5 @@
     </div>
 
     <script src="main.js"></script>
+</body>
+</html>

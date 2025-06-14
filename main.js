@@ -9,6 +9,7 @@ class CRMApp {
     this.reports = this.generateData('reports');
     this.analytics = this.generateData('analytics');
     this.requests = this.generateData('requests');
+    this.relationshipIntelligence = this.generateData('relationshipIntelligence');
     this.init();
   }
 
@@ -20,6 +21,7 @@ class CRMApp {
     this.renderReports();
     this.renderAnalytics();
     this.renderRequests();
+    this.renderRelationshipIntelligence();
     this.setupDragAndDrop();
   }
 
@@ -226,6 +228,68 @@ class CRMApp {
         { id: 1, title: 'Discount Approval', description: '15% discount for Enterprise deal', status: 'pending', date: '2 days ago' },
         { id: 2, title: 'Price Override', description: 'Custom pricing for bulk order', status: 'approved', date: '1 week ago' },
         { id: 3, title: 'Extended Trial', description: '30-day trial extension request', status: 'rejected', date: '3 days ago' }
+      ],
+      relationshipIntelligence: [
+        { 
+          id: 1, 
+          name: 'Sarah Johnson', 
+          company: 'Tech Corp', 
+          healthScore: 92, 
+          sentiment: 'positive', 
+          lastContact: '2 days ago',
+          riskLevel: 'low',
+          communicationFreq: 'high',
+          responseTime: '1.2 hours',
+          engagementTrend: 'increasing'
+        },
+        { 
+          id: 2, 
+          name: 'Mike Chen', 
+          company: 'Innovate Inc', 
+          healthScore: 67, 
+          sentiment: 'neutral', 
+          lastContact: '1 week ago',
+          riskLevel: 'medium',
+          communicationFreq: 'medium',
+          responseTime: '4.5 hours',
+          engagementTrend: 'stable'
+        },
+        { 
+          id: 3, 
+          name: 'Emily Rodriguez', 
+          company: 'Startup Solutions', 
+          healthScore: 34, 
+          sentiment: 'negative', 
+          lastContact: '2 weeks ago',
+          riskLevel: 'high',
+          communicationFreq: 'low',
+          responseTime: '12+ hours',
+          engagementTrend: 'decreasing'
+        },
+        { 
+          id: 4, 
+          name: 'David Kim', 
+          company: 'Enterprise Networks', 
+          healthScore: 88, 
+          sentiment: 'positive', 
+          lastContact: '1 day ago',
+          riskLevel: 'low',
+          communicationFreq: 'high',
+          responseTime: '0.8 hours',
+          engagementTrend: 'increasing'
+        },
+        { 
+          id: 5, 
+          name: 'Lisa Wang', 
+          company: 'Digital Dynamics', 
+          healthScore: 45, 
+          sentiment: 'neutral', 
+          lastContact: '10 days ago',
+          riskLevel: 'high',
+          communicationFreq: 'low',
+          responseTime: '8+ hours',
+          engagementTrend: 'decreasing'
+        }
       ]
     };
     return data[type];
@@ -361,6 +425,53 @@ class CRMApp {
     });
   }
 
+  createRelationshipIntelligenceCard(customer) {
+    const healthClass = customer.healthScore >= 80 ? 'healthy' : customer.healthScore >= 50 ? 'warning' : 'critical';
+    const sentimentEmoji = customer.sentiment === 'positive' ? '😊' : customer.sentiment === 'neutral' ? '😐' : '😟';
+    
+    return this.createGenericCard({
+      type: 'ri-customer',
+      classes: `ri-customer-card ${healthClass}`,
+      dataAttributes: { 'customer-id': customer.id },
+      header: {
+        title: customer.name,
+        subtitle: customer.company,
+        badge: { text: customer.riskLevel.toUpperCase(), class: `risk-${customer.riskLevel}` }
+      },
+      body: `
+        <div class="ri-health-bar">
+          <div class="health-score-label">Health Score</div>
+          <div class="health-bar">
+            <div class="health-fill ${healthClass}" style="width: ${customer.healthScore}%"></div>
+            <span class="health-score">${customer.healthScore}/100</span>
+          </div>
+        </div>
+        <div class="ri-insights">
+          <div class="insight-item">
+            <span class="insight-label">Sentiment:</span>
+            <span class="insight-value">${sentimentEmoji} ${customer.sentiment}</span>
+          </div>
+          <div class="insight-item">
+            <span class="insight-label">Last Contact:</span>
+            <span class="insight-value">${customer.lastContact}</span>
+          </div>
+          <div class="insight-item">
+            <span class="insight-label">Response Time:</span>
+            <span class="insight-value">${customer.responseTime}</span>
+          </div>
+          <div class="insight-item">
+            <span class="insight-label">Engagement:</span>
+            <span class="insight-value trend-${customer.engagementTrend}">${customer.engagementTrend}</span>
+          </div>
+        </div>
+      `,
+      actions: [
+        { text: 'View Details', class: 'btn btn-primary' },
+        { text: 'Contact', class: 'btn btn-secondary' }
+      ]
+    });
+  }
+
   // Enhanced render methods
   renderDeals() {
     Object.keys(this.deals).forEach(stage => {
@@ -407,6 +518,15 @@ class CRMApp {
         ).join('');
       }
     });
+  }
+
+  renderRelationshipIntelligence() {
+    const container = document.getElementById('ri-customer-grid');
+    if (container) {
+      container.innerHTML = this.relationshipIntelligence.map(customer => 
+        this.createRelationshipIntelligenceCard(customer)
+      ).join('');
+    }
   }
 
   // Generic filter function
@@ -614,6 +734,7 @@ class CRMApp {
           "You can drag and drop deals between pipeline stages to update their status.",
           "Use the search bar to quickly find leads or contacts.",
           "The dashboard shows your key metrics and recent activity.",
+          "The Relationship Intelligence panel provides insights into customer health and sentiment.",
           "Would you like me to explain how to use any specific feature?"
         ];
         const randomResponse = responses[Math.floor(Math.random() * responses.length)];
